@@ -1,0 +1,103 @@
+@import 'mixin-theme';
+
+[data-theme=light] {
+    @include theme-bg('light');
+    .theme {
+        // 弹出框样式 --亮
+        &-pop {
+            @include theme-pop('light');
+            // 弹出框子项
+            &-item {
+                @include theme-pop-item('light');
+                &:hover {
+                    @include theme-pop-item-hover('light');
+                }
+            }
+        }
+        // 模态框样式
+        &-modal {
+            @include theme-modal('light');
+            &-block {
+                @include theme-modal-block('light');
+                &-item:hover {
+                    @include theme-modal-block-hover('light');
+                }
+            }
+        }
+        // 搜索框
+        &-searchInput {
+            @include theme-searchInput('light');
+            &:hover {
+                @include theme-searchInput-over('light');
+            }
+            // 当输入框被点击时应用的样式
+            &-click {
+                @include theme-searchInput-click('light');
+            }
+        }
+        // logo文字
+        &-logo {
+            color: #a788cf;
+        }
+        // 用户设置
+        &-user-settings {
+            &-hide {
+                @include theme-userSettings('light');
+            }
+            &-login-state {
+                @include theme-userSettings-loginState('light');
+            }
+        }
+    }
+}
+[data-theme=dark] {
+    @include theme-bg('dark');
+    .theme {
+        // 弹出框样式 --暗
+        &-pop {
+            @include theme-pop('dark');
+            // 弹出框子项
+            &-item {
+                @include theme-pop-item('dark');
+                &:hover {
+                    @include theme-pop-item-hover('dark');
+                }
+            }
+        }
+        // 模态框样式
+        &-modal {
+            @include theme-modal('dark');
+            &-block {
+                @include theme-modal-block('dark');
+                &-item:hover {
+                    @include theme-modal-block-hover('dark');
+                }
+            }
+        }
+        &-searchInput {
+            @include theme-searchInput('dark');
+            &:hover {
+                @include theme-searchInput-over('dark');
+            }
+            // 当输入框被点击时应用的样式
+            &-click {
+                @include theme-searchInput-click('dark');
+            }
+        }
+        // logo文字
+        &-logo {
+            -webkit-text-stroke: #9c88b7 .2rem;
+            color: transparent;
+            text-shadow: 0 0 8rem rgba(105, 59, 166, 0.806);
+        }
+        // 用户设置
+        &-user-settings {
+            &-hide {
+                @include theme-userSettings('dark');
+            }
+            &-login-state {
+                @include theme-userSettings-loginState('dark');
+            }
+        }
+    }
+}

@@ -1,0 +1,110 @@
+$primary: #9086ff;
+$light: #B7B0FF;
+$dark: #685bff;
+$black: #574dc0;
+
+$themes: (
+    'light': (
+        transition: $theme-transition,
+
+        // 主体样式
+        'body': (
+            // 主体颜色
+            background: #fff,
+            color: #525252,
+        ),
+        // 块样式
+        'block': (
+            // 弹框
+            'pop': (
+                background: linear-gradient(rgba(155, 116, 255, 0.3),rgba(140, 115, 243, 0.3) 40%),
+            ),
+            'item': (
+                color: #521c84,
+                hover-color: #fff,
+                hover-background: rgba(84, 44, 203, 0.5),
+            ),
+            'modal': (
+                background: #ffffff,
+                blockBgColor: #e4e4e4,
+                blockHoverBgColor: #c5c5c5,
+            )
+        ),
+        // 主界面搜索框
+        'searchInput': (
+            outline: #7543ff .2rem dashed,
+            shadow: 0 0 5rem rgba(137, 137, 137, .3),
+            background: #ffffff,
+            transition: .2s,
+            // 鼠标经过样式
+            'hover': (
+                outline: #7543ff .4rem dashed,
+                outline-offset:  .8rem,
+                shadow: 0 0 3.5rem -.2rem rgba(140, 0, 255, 0.5),
+            ),
+        ),
+        // 用户设置
+        'userSettings': (
+            // 未点击
+            'hide': (
+                background: $primary,
+                iconColor: #fff,
+                stateColor: #00e79a,
+            ),
+            // 已点击
+            'show': ()
+        )
+    ),
+    'dark': (
+        transition: $theme-transition,
+
+        // 主体样式
+        'body': (
+            // 主体颜色
+            background: #151515,
+            color: #ffffff,
+        ),
+        // 块样式
+        'block': (
+            // 弹框
+            'pop': (
+                background: rgba(143, 124, 165, 0.3),
+                shadow: 0 0 3rem rgba(139, 97, 141, 0.25),
+            ),
+            'item': (
+                color: #fff,
+                hover-color: #ffffff,
+                hover-background: rgba(132, 100, 222, 0.8),
+            ),
+            'modal': (
+                background: #111111,
+                blockBgColor: #2d2d2d,
+                blockHoverBgColor: #4a4a4a,
+            )
+        ),
+        // 主界面搜索框
+        'searchInput': (
+            outline: #9d92ff .2rem dashed,
+            shadow: 0 0 5rem rgba(163, 155, 255, 0.3),
+            background: #282828,
+            transition: .2s,
+            // 鼠标经过样式
+            'hover': (
+                outline: #9d92ff .4rem dashed,
+                outline-offset:  .8rem,
+                shadow: 0 0 3.5rem -.2rem rgba(254, 174, 255, 0.7),
+            ),
+        ),
+        // 用户设置
+        'userSettings': (
+            // 未点击
+            'hide': (
+                background: $dark,
+                iconColor: #fff,
+                stateColor: #00ffaa,
+            ),
+            // 已点击
+            'show': ()
+        )
+    )
+)

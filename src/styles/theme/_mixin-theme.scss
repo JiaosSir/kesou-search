@@ -1,0 +1,108 @@
+@import '_themes';
+// 主体样式
+@mixin theme-bg($name) {
+    $this_theme-type: map-get($themes, $name);                         // 获取主题变量
+    $this_theme_body: map-get($this_theme-type, 'body');               // 获取body变量
+    background-color: map-get($this_theme_body, 'background');
+    color: map-get($this_theme_body, 'color');
+}
+
+/*
+ *  块样式
+*/
+// 弹出框样式
+@mixin theme-pop($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_block-pop: map-get($this_theme_block, 'pop');          // 获取 pop 变量
+    background: map-get($this_theme_block-pop, 'background');
+    box-shadow: map-get($this_theme_block-pop, 'shadow');
+}
+// 弹出框子项样式
+@mixin theme-pop-item($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_pop_item: map-get($this_theme_block, 'item');          // 获取 item 变量
+    color: map-get($this_theme_pop_item, 'color');
+}
+// 弹出框子项鼠标经过样式
+@mixin theme-pop-item-hover($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_pop_item: map-get($this_theme_block, 'item');          // 获取 item 变量
+    background: map-get($this_theme_pop_item, 'hover-background') !important;
+    color: map-get($this_theme_pop_item, 'hover-color');
+}
+// 模态框样式
+@mixin theme-modal($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_modal: map-get($this_theme_block, 'modal');            // 获取 modal 变量
+    background: map-get($this_theme_modal, 'background');
+}
+// 模态框内块样式
+@mixin theme-modal-block($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_modal: map-get($this_theme_block, 'modal');            // 获取 modal 变量
+    background: map-get($this_theme_modal, 'blockBgColor');
+}
+// 模态框内块鼠标经过样式
+@mixin theme-modal-block-hover($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_block: map-get($this_theme-type, 'block');             // 获取 block 变量
+    $this_theme_modal: map-get($this_theme_block, 'modal');            // 获取 modal 变量
+    background: map-get($this_theme_modal, 'blockHoverBgColor');
+}
+
+/*
+ *  主页搜索框样式
+*/
+@mixin theme-searchInput($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_searchInput: map-get($this_theme-type, 'searchInput'); // 获取 searchInput 变量
+    outline: map-get($this_theme_searchInput, 'outline');
+    box-shadow: map-get($this_theme_searchInput, 'shadow');
+    background-color: map-get($this_theme_searchInput, 'background');
+    $transition: map-get($this_theme_searchInput, 'transition');
+    transition: outline-offset $transition,
+                outline-width $transition,
+                box-shadow $transition;
+}
+// 主页搜索框鼠标经过样式
+@mixin theme-searchInput-over($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_searchInput: map-get($this_theme-type, 'searchInput'); // 获取 searchInput 变量
+    $this_theme_searchInput-hover: map-get($this_theme_searchInput, 'hover'); // 获取 hover 变量
+    outline: map-get($this_theme_searchInput-hover, 'outline');
+    outline-offset: map-get($this_theme_searchInput-hover, 'outline-offset');
+    box-shadow: map-get($this_theme_searchInput-hover, 'shadow');
+}
+// 主页搜索框鼠标点击样式
+@mixin theme-searchInput-click($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_searchInput: map-get($this_theme-type, 'searchInput'); // 获取 searchInput 变量
+    $this_theme_searchInput-hover: map-get($this_theme_searchInput, 'hover'); // 获取 hover 变量
+    outline: map-get($this_theme_searchInput-hover, 'outline');
+    outline-offset: 0 !important;
+    box-shadow: map-get($this_theme_searchInput-hover, 'shadow');
+}
+
+/*
+ *  用户设置样式
+*/
+// 设置图标
+@mixin theme-userSettings($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_userSettings: map-get($this_theme-type, 'userSettings'); // 获取 userSettings 变量
+    $this_theme_userSettings-hide: map-get($this_theme_userSettings, 'hide'); // 获取 hide 变量
+    background: map-get($this_theme_userSettings-hide, 'background');
+    color: map-get($this_theme_userSettings-hide, 'iconColor');
+}
+// 登录状态
+@mixin theme-userSettings-loginState($name) {
+    $this_theme-type: map-get($themes, $name);
+    $this_theme_userSettings: map-get($this_theme-type, 'userSettings'); // 获取 userSettings 变量
+    $this_theme_userSettings-hide: map-get($this_theme_userSettings, 'hide'); // 获取 hide 变量
+    background: map-get($this_theme_userSettings-hide, 'stateColor');
+}
