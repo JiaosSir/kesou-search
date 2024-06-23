@@ -30,10 +30,11 @@
     .jo-mask {
         float: left;
         position: absolute;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        left: 0;
+        inset: 0;
+        // width: 100vw;
+        // height: 100vh;
+        // top: 0;
+        // left: 0;
         z-index: v-bind(index);
         background: v-bind(bgColor);
         backdrop-filter: blur(v-bind(blur));

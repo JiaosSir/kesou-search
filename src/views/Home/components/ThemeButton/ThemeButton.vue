@@ -70,7 +70,7 @@
         justify-content: space-between;
         align-items: flex-end;
         position: relative;
-        z-index: 1;
+        z-index: 0;
 
         // 切换主题时扩大的圈
         .mark {

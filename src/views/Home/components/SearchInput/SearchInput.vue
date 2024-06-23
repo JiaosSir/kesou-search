@@ -5,7 +5,7 @@
             <!-- 左侧搜索引擎图标 -->
             <div class="search-input-i" @click.stop="">
                 <div class="search-input--icon" @click="popSearchUrlList" :title="thisUrlName">
-                    <img :src="thisUrlIcon" class="url-icon">
+                    <jo-load-img :src="thisUrlIcon" class="url-icon"/>
                 </div>
                 <!-- 弹出框 -->
                 <transition name="popSearch">

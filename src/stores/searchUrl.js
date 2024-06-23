@@ -38,8 +38,15 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
     }
     // 新增搜索引擎
     const addUrl = urlList => customUrls.value.unshift(urlList)
+    // 检测是否有重复的域名
+    const checkRepeat = url => {
+        const hostname = new URL(url).hostname                               // 获取域名
+        const newUrl = urls.value.concat(customUrls.value)                   // 合并两个数组
+        const res = newUrl.filter(v => new URL(v.url).hostname === hostname) // 过滤数组
+        return res.length !== 0 ? false : true
+    }
 
-    return { urls, customUrls, currentUrl, changeUrl, addUrl }
+    return { urls, customUrls, currentUrl, changeUrl, addUrl, checkRepeat }
 }, {
     persist: {
         paths: ['customUrls', 'currentUrl']

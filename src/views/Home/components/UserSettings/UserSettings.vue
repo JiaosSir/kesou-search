@@ -123,7 +123,7 @@
 <style scoped lang="scss">
     .user-settings {
         position: relative;
-        z-index: 1;
+        z-index: 10;
         min-width: 2.7rem;
         height: 2.7rem;
         &:hover {

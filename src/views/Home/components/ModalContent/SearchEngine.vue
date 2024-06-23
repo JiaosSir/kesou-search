@@ -3,7 +3,7 @@
         <h4>预设引擎</h4>
         <ul class="url-list theme-modal-block">
             <li class="theme-modal-block-item" v-for="list in urls" :key="list.url" @click="changeEngine(list)">
-                <img :src="list.icon">
+                <jo-load-img :src="list.icon"/>
                 <p>{{ list.name }}</p>
                 <p class="url">{{ list.url }}</p>
                 <!-- 当前选中引擎的图标 -->
@@ -17,7 +17,7 @@
         <p v-if="customUrls.length == 0">暂无自定义引擎</p>
         <ul class="url-list theme-modal-block">
             <li class="theme-modal-block-item" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
-                <img :src="list.icon">
+                <jo-load-img :src="list.icon"/>
                 <p>{{ list.name }}</p>
                 <p class="url">{{ list.url }}</p>
                 <!-- 当前选中引擎的图标 -->

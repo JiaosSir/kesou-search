@@ -17,5 +17,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        position: relative;
+        z-index: 1;
     }
 </style>
