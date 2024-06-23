@@ -3,7 +3,7 @@
         <!-- 内置引擎 -->
         <template #normal-list>
             <ul class="url-list">
-                <li class="theme-pop-item" v-for="list in urls" :key="list.url" @click="changeEngine(list)">
+                <li :class="`theme-pop-item ${checkCurrentEngnie(list) ? 'theme-pop-strong-item' :''}`" v-for="list in urls" :key="list.url" @click="changeEngine(list)">
                     <jo-load-img :src="list.icon"/>
                     <p>{{ list.name }}</p>
                 </li>
@@ -12,7 +12,7 @@
         <!-- 自定义引擎 -->
         <template #more-list>
             <ul class="url-list split-line">
-                <li class="theme-pop-item" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
+                <li :class="`theme-pop-item ${checkCurrentEngnie(list) ? 'theme-pop-strong-item' :''}`" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
                     <jo-load-img :src="list.icon"/>
                     <p>{{ list.name }}</p>
                 </li>
@@ -40,7 +40,7 @@
      * store 
     */
     const { urls, customUrls } = storeToRefs(useSearchUrlStore())
-    const { changeUrl } = useSearchUrlStore()
+    const { changeUrl, checkCurrentEngnie } = useSearchUrlStore()
     const { setCurrentPop } = useCloseBlockStore()
 
 
@@ -72,7 +72,6 @@
             transition: .08s;
             
             &:hover {
-                background-color: $pop-item-hover-bg;
                 &>:first-child{
                     transform-origin: center center;
                     transform: scale(1.25);

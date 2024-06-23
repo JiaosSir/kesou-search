@@ -13,6 +13,9 @@
                     @include theme-pop-item-hover('light');
                 }
             }
+            &-strong-item {
+                @include theme-pop-item-hover('light');
+            }
         }
         // 模态框样式
         &-modal {
@@ -62,6 +65,9 @@
                 &:hover {
                     @include theme-pop-item-hover('dark');
                 }
+            }
+            &-strong-item {
+                @include theme-pop-item-hover('dark');
             }
         }
         // 模态框样式

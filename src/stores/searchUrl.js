@@ -45,8 +45,12 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
         const res = newUrl.filter(v => new URL(v.url).hostname === hostname) // 过滤数组
         return res.length !== 0 ? false : true
     }
+    // 检测当前搜索引擎
+    const checkCurrentEngnie = url => {
+        return url.url === currentUrl.value.url
+    }
 
-    return { urls, customUrls, currentUrl, changeUrl, addUrl, checkRepeat }
+    return { urls, customUrls, currentUrl, changeUrl, addUrl, checkRepeat, checkCurrentEngnie }
 }, {
     persist: {
         paths: ['customUrls', 'currentUrl']
