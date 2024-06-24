@@ -36,7 +36,6 @@
         padding: 2rem 3rem;
         width: v-bind(width);
         // width: 50vw;
-        max-height: 60rem;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -64,6 +63,13 @@
                 &:hover {
                     background-color: rgba(199, 199, 199, .5);
                 }
+            }
+        }
+        &-main {
+            max-height: 52rem;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                display: none;
             }
         }
     }

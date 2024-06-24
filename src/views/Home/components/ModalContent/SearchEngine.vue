@@ -3,11 +3,11 @@
         <h4>预设引擎</h4>
         <ul class="url-list theme-modal-block">
             <li class="theme-modal-block-item" v-for="list in urls" :key="list.url" @click="changeEngine(list)">
-                <img :src="list.icon">
-                <p>{{ list.name }}</p>
+                <jo-load-img :src="list.icon"/>
+                <p class="name">{{ list.name }}</p>
                 <p class="url">{{ list.url }}</p>
                 <!-- 当前选中引擎的图标 -->
-                <div class="check" v-show="currentUrl.url == list.url"><el-icon size="2rem"><i-ep-CircleCheckFilled /></el-icon></div>
+                <div class="check" v-show="checkCurrentEngnie(list)"><el-icon size="2rem"><i-ep-CircleCheckFilled /></el-icon></div>
             </li>
         </ul>
         <nav>
@@ -17,11 +17,11 @@
         <p v-if="customUrls.length == 0">暂无自定义引擎</p>
         <ul class="url-list theme-modal-block">
             <li class="theme-modal-block-item" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
-                <img :src="list.icon">
-                <p>{{ list.name }}</p>
+                <jo-load-img :src="list.icon"/>
+                <p class="name">{{ list.name }}</p>
                 <p class="url">{{ list.url }}</p>
                 <!-- 当前选中引擎的图标 -->
-                <div class="check" v-show="currentUrl.url == list.url"><el-icon size="2rem"><i-ep-CircleCheckFilled /></el-icon></div>
+                <div class="check" v-show="checkCurrentEngnie(list)"><el-icon size="2rem"><i-ep-CircleCheckFilled /></el-icon></div>
             </li>
         </ul>
     </section>
@@ -35,8 +35,8 @@
     /** 
      * store 
     */
-    const { urls, customUrls, currentUrl } = storeToRefs(useSearchUrlStore())
-    const { changeUrl } = useSearchUrlStore()
+    const { urls, customUrls } = storeToRefs(useSearchUrlStore())
+    const { changeUrl, checkCurrentEngnie } = useSearchUrlStore()
 
 
     const isToAdd = ref(false) // 是否开启添加自定义引擎页面
@@ -94,6 +94,10 @@
                 p {
                     font-size: 1.6rem;
                     margin-left: 1.2rem;
+                }
+                // 引擎名称
+                .name {
+                    width: 10rem;
                 }
                 // url文字
                 .url {

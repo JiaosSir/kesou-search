@@ -19,7 +19,7 @@
     // 弹出框背景区（width用于指定此处大小）
     .jo-popup-box {
         padding: 1rem 0;
-        width: v-bind(width);
+        max-width: v-bind(width);
         border-radius: 1.5rem;
         backdrop-filter: blur(5rem);
         transition: .2s;
