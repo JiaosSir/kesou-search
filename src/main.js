@@ -18,4 +18,5 @@ app.component('JoRow', JoRow)
 
 app.use(pinia).use(router)
 
+
 app.mount('#app')
