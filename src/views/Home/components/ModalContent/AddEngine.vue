@@ -108,6 +108,7 @@
         if(engineName.value.trim() !== '' && engineUrl.value.trim() !== '') {
             return 'next'
         } else {
+            ElMessage.error('输入不能为空')
             return false
         }
     }
@@ -115,6 +116,7 @@
         if(engineName.value.trim().length <= 6) {
             return 'next'
         } else {
+            ElMessage.error('名称长度不符')
             return false
         }
         
@@ -124,15 +126,21 @@
             new URL(engineUrl.value)
             return 'next'
         } catch {
+            ElMessage.error('URL类型出错')
             return false
         }
         
     }
     const checkUrlRepeat = () => {                                    // 检查url是否重复
-        return checkRepeat(engineUrl.value) ? 'next' : false
+        if(checkRepeat(engineUrl.value)) {
+            return 'next'
+        } else {
+            ElMessage.error('域名重复（引擎中已存在该域名）')
+            return false
+        }
     }
     const success = () => {                                           // 所有校验通过后执行的函数
-        console.log('pass!!');
+        ElMessage.success('添加成功')
         pass.value = true
         return 'next'
     }
@@ -173,14 +181,15 @@
                     &:hover+.text {
                         visibility: visible;
                         opacity: 1;
-                        transition: all .2s .5s;
+                        transition: all .2s .1s;
                     }
                 }
                 .text {
                     visibility: hidden;
                     opacity: 0;
                     padding: .3rem 1rem;
-                    width: 30rem;
+                    width: 40rem;   
+                    font-size: 1.5rem;
                     border-radius: .5rem;
                     background-color: rgb(174, 146, 255);
                     position: absolute;
@@ -196,7 +205,7 @@
                         border-radius: 0;
                         position: absolute;
                         top: 99%;
-                        right: 7.3rem;
+                        right: 12.2rem;
                     }
                 }
             }
