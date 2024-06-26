@@ -4,9 +4,18 @@
         <section class="search-input theme-searchInput" ref="searchInput">
             <!-- 左侧搜索引擎图标 -->
             <div class="search-input-i" @click.stop="">
-                <div class="search-input--icon" @click="popSearchUrlList" :title="thisUrlName">
-                    <jo-load-img :src="thisUrlIcon" class="url-icon"/>
-                </div>
+                <!-- 当前网址的气泡提示 -->
+                <el-tooltip
+                    class="box-item"
+                    effect="dark"
+                    :show-after="100"
+                    :content="thisUrlName"
+                    placement="top-start"
+                >
+                    <div class="search-input--icon" @click="popSearchUrlList">
+                        <jo-load-img :src="thisUrlIcon" class="url-icon"/>
+                    </div>
+                </el-tooltip>
                 <!-- 弹出框 -->
                 <transition name="popSearch">
                     <search-url-list v-show="isSwitch" class="search-pop"></search-url-list>
@@ -110,7 +119,6 @@
             justify-content: space-between;
             align-items: center;
             transition: .2s;
-
             // 右侧搜索图标
             .url-icon {
                 width: 2rem;

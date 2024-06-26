@@ -50,6 +50,7 @@
 </script>
 <style scoped lang="scss">
     .search-engine {
+        width: 50vw;
         padding: 0 2rem;
 
         nav {
@@ -104,6 +105,10 @@
                     margin-left: 3rem;
                     font-size: 1.4rem;
                     opacity: .6;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    flex-shrink: 1;
                 }
                 // 当前选中引擎的图标
                 .check {

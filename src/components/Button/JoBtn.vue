@@ -1,5 +1,5 @@
 <template>
-    <button>{{ value }}</button>
+    <button :type="type" :formenctype="formenctype">{{ value }}</button>
 </template>
 
 <script setup>
@@ -16,6 +16,20 @@
         color: {
             type: String,
             default: '#fff'
+        },
+        width: {
+            type: String,
+            default: '100%'
+        },
+        height: {
+            type: String,
+            default: '4rem'
+        },
+        type: {
+            type: String,
+        },
+        formenctype: {
+            type: String,
         }
     })
 </script>
@@ -25,13 +39,16 @@
         cursor: pointer;
         outline: none;
         border: none;
-        width: 100%;
-        height: 4rem;
+        width: v-bind(width);
+        height: v-bind(height);
         text-align: center;
         transition: .1s linear;
         font-size: 1.5rem;
         border-radius: v-bind(radius);
         background: v-bind(background);
         color: v-bind(color);
+        &:active {
+            filter: brightness(.8);
+        }
     }
 </style>

@@ -42,6 +42,7 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
     const checkRepeat = url => {
         const hostname = new URL(url).hostname                               // 获取域名
         const newUrl = urls.value.concat(customUrls.value)                   // 合并两个数组
+        console.log(newUrl);
         const res = newUrl.filter(v => new URL(v.url).hostname === hostname) // 过滤数组
         return res.length !== 0 ? false : true
     }

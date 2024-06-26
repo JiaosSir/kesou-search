@@ -1,30 +1,24 @@
 <template>
-    <section class="jo-modal theme-modal">
+    <section class="jo-modal theme-modal" v-show="state">
         <nav class="jo-modal-nav">
-            <h3>{{ modalTitle }}</h3>
+            <h3>{{ title }}</h3>
             <el-icon class="close" size="2rem" @click="closeModal"><i-ep-Close /></el-icon>
         </nav>
         <section class="jo-modal-main">
-            <component :is="modalContent"></component>
+            <slot></slot>
         </section>
     </section>
 </template>
 <script setup>
-    import { storeToRefs } from 'pinia'
-    import { useModalStore } from '@/stores/modal'
-
-    /** 
-     * store 
-    */
-    const { changeModalState } = useModalStore()
-    const { modalTitle, modalContent } = storeToRefs(useModalStore())
-
+    const state = defineModel()
     const closeModal = () => {
-        changeModalState()
+        state.value = false
     }
-
+    defineProps({
+        title: String
+    })
     defineOptions({
-        name: 'JoModal'
+        name: 'JoModalSlot'
     })
 </script>
 <style scoped lang="scss">
@@ -34,8 +28,10 @@
         position: absolute;
         top: 50%;
         left: 50%;
+        z-index: 10;
         transform: translate(-50%, -50%);
         border-radius: 2rem;
+        box-shadow: 0 0 2rem #21212131;
 
         &-nav {
             margin-bottom: 2rem;

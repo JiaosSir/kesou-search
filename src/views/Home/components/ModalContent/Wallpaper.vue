@@ -189,6 +189,7 @@
 </script>
 <style scoped lang="scss">
 .wallpaper {
+    width: 50vw;
     padding: 0 2rem;
     // 更换壁纸区
     &-change {
@@ -197,7 +198,8 @@
         align-items: center;
         &-preview {
             width: 60%;
-            height: 28.3rem;
+            // height: 28.3rem;
+            height: 30vh;
             border-radius: 1rem;
             border: .5rem solid #dbd4e8;
             background-color: transparent;

@@ -7,10 +7,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElHide: typeof import('element-plus/es')['ElHide']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
     IEpCirclePlusFilled: typeof import('~icons/ep/circle-plus-filled')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
+    IEpHide: typeof import('~icons/ep/hide')['default']
     IEpMoonNight: typeof import('~icons/ep/moon-night')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpQuestionFilled: typeof import('~icons/ep/question-filled')['default']
@@ -18,11 +22,12 @@ declare module 'vue' {
     IEpSunrise: typeof import('~icons/ep/sunrise')['default']
     IEpTools: typeof import('~icons/ep/tools')['default']
     IEpUserFilled: typeof import('~icons/ep/user-filled')['default']
-    IETools: typeof import('~icons/e/tools')['default']
+    IEpView: typeof import('~icons/ep/view')['default']
     JoBtn: typeof import('./components/Button/JoBtn.vue')['default']
     JoLoadImg: typeof import('./components/Image/JoLoadImg.vue')['default']
     JoMask: typeof import('./components/Mask/JoMask.vue')['default']
     JoModal: typeof import('./components/Modal/JoModal.vue')['default']
+    JoModalSlot: typeof import('./components/Modal/JoModalSlot.vue')['default']
     JoPopup: typeof import('./components/Popup/JoPopup.vue')['default']
     JoSwitch: typeof import('./components/Button/JoSwitch.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

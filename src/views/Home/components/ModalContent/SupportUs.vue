@@ -12,8 +12,12 @@
 </script>
 <style scoped lang="scss">
     .support {
+        width: 50vw;
         margin-bottom: 5rem;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         p {
             font-size: 1.8rem;
             margin: 2rem 0;

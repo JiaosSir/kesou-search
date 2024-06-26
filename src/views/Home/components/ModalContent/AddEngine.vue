@@ -1,7 +1,7 @@
 <template>
     <teleport to='#app'>
         <transition name="addSeach">
-            <section class="add-engine theme-modal" v-show="state">
+            <section class="add-engine theme-modal" v-if="state">
                 <nav class="add-engine-nav">
                     <div class="add-engine-nav__title">
                         <h3>自定义搜索引擎</h3>
@@ -87,6 +87,7 @@
         rule.addRule(checkLength)
             .addRule(checkUrlType)
             .addRule(checkUrlRepeat)
+            .addRule(checkUrlEffective)
             .addRule(success)
             .end()
         // 开启校验
@@ -96,7 +97,7 @@
             addUrl({
                 url:  searchUrl.value,
                 icon:  searchIcon.value,
-                name: engineName.value
+                name: engineName.value.trim()
             })
             closeModal()
         }
@@ -113,13 +114,17 @@
         }
     }
     const checkLength = () => {                                       // 检查名字长度是否相符
-        if(engineName.value.trim().length <= 6) {
+        let num = 0
+        const reg = /[\u4e00-\u9fa5]/                                 // 中文匹配
+        engineName.value.trim().split('').forEach(v => {
+			reg.test(v) ? num += 2 : num++                            // 中文占2字符，其它占1字符
+		})
+        if(num <= 12) {
             return 'next'
         } else {
             ElMessage.error('名称长度不符')
             return false
         }
-        
     }
     const checkUrlType = () => {                                      // 检查是否符合url类型
         try {
@@ -139,6 +144,14 @@
             return false
         }
     }
+    const checkUrlEffective = () => {
+        if(searchUrl.value != '') {
+            return 'next'
+        }else {
+            ElMessage.warning('网址无效')
+            return false
+        }
+    }
     const success = () => {                                           // 所有校验通过后执行的函数
         ElMessage.success('添加成功')
         pass.value = true
@@ -154,7 +167,6 @@
     .add-engine {
         padding: 2rem 3rem 3rem;
         width: 40rem;
-        // height: 45rem;
         position: absolute;
         z-index: 11;
         top: 50%;
