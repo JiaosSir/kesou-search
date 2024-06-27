@@ -37,7 +37,7 @@
                         <input class="input reg-input" type="password" autocomplete="off" v-model="passwordAgainR">
                         <div class="noticy">
                             <p class="toggle">
-                                <span class="reg-span" @click="showLogin">← 返回</span>
+                                <span class="reg-span" @click="closeRegister">← 返回</span>
                             </p>
                         </div>
                         <jo-btn value="注册" height="5rem" class="btn register-btn" />
@@ -48,8 +48,11 @@
     </transition>
 </template>
 <script setup>
+import { useModalStore } from '@/stores/modal'
 import { Verify } from '@/hooks/useVerify'
 import { login, register } from '@/api/user'
+
+const { changeModalState } = useModalStore()
 
 /**
  *  盒子
@@ -61,7 +64,7 @@ const registerPass = ref(false)                  // 注册校验是否通过
 const showRegister = () => {                     // 打开注册框
     registerShow.value = true
 }
-const showLogin = () => {                        // 关闭注册框
+const closeRegister = () => {                    // 关闭注册框
     registerShow.value = false
 }
 
@@ -160,6 +163,7 @@ const toLogin = () => {
         login(phoneL.value.trim(), passwordL.value.trim()).then(res => {
             console.log(res)
             ElMessage.success('登录成功')
+            changeModalState()
         }).catch(err => {
             console.log(new Error(err))
         })
@@ -181,6 +185,7 @@ const toRegister = () => {
         register(nickNameR.value.trim(), phoneR.value.trim(), passwordAgainR.value.trim()).then(res => {
             console.log(res)
             ElMessage.success('注册成功')
+            closeRegister()
         }).catch(err => {
             console.log(new Error(err))
         })
