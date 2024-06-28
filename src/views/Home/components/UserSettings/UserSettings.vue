@@ -6,7 +6,7 @@
             <el-icon v-show="!isOpen" size="2rem" class="settings-icon" @click="showSettings"><i-ep-UserFilled /></el-icon>
             <!-- 设置内容 -->
             <section v-show="isOpen" class="settings__content">
-                <h2>欢迎</h2>
+                <h2>{{ loginState ? userInfo.nickName : "欢迎" }}</h2>
                 <ul class="settings__content--list">
                     <li v-for="item in settingList" :key="item.item" :class="item?.split" @click="openModal(item.title, item.component)">
                         <i v-html="item?.icon" class="item-svg"></i>
@@ -16,29 +16,29 @@
             </section>
         </div>
         <!-- 登录状态 -->
-        <div class="no-login login-state theme-user-settings-login-state" ref="stateDot" @click="showSettings">
+        <div :class="`${loginState?'':'no-login'} login-state theme-user-settings-login-state`" ref="stateDot" @click="showSettings">
             <el-icon v-show="isOpen"><i-ep-Close /></el-icon>
         </div>
-        <!-- <button @click="loginState = !loginState">111111</button> -->
     </section>
 </template>
 <script setup>
+    import { storeToRefs } from 'pinia'
     import { markRaw } from 'vue'
     import { useModalStore } from '@/stores/modal.js'
+    import { useUserStore } from '@/stores/user'
     import OutLogin from '@/views/Home/components/ModalContent/OutLogin.vue'
     import ToLogin from '@/views/Home/components/ModalContent/ToLogin.vue'
     import SearchEngine from '@/views/Home/components/ModalContent/SearchEngine.vue'
-    import SpaceSetting from '@/views/Home/components/ModalContent/SpaceSetting.vue'
     import SupportUs from '@/views/Home/components/ModalContent/SupportUs.vue'
     import Wallpaper from '@/views/Home/components/ModalContent/Wallpaper.vue'
+    import UserInfo from '@/views/Home/components/ModalContent/UserInfo.vue'
 
     /** 
      * store 
     */
+    const { loginState, userInfo } = storeToRefs(useUserStore())
     const { changeModalState, setModal } = useModalStore()
 
-
-    const loginState = ref(false)
     const isOpen = ref(false)                                             // 是否打开设置页
     const settings  = ref(null)                                           // 设置框实例
     const stateDot = ref(null)                                            // 登录状态实例
@@ -100,6 +100,7 @@
             component: computed(() => loginState.value ? markRaw(OutLogin):markRaw(ToLogin))
         },
     ])
+    const listLen = settingList.value.length
 
     const openModal = (title, component) => {
         changeModalState()
@@ -111,13 +112,20 @@
         loginState,
         () => {
             if(loginState.value) {
-                settingList.value.unshift({item: '个人设置', icon: '<svg t="1718698768090" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="62623" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M847.616 192H144.384A79.36 79.36 0 0 0 64 272.384v502.336c0 45.184 35.2 80.32 80.384 80.32h703.232a79.36 79.36 0 0 0 80.384-80.32v-502.4A79.36 79.36 0 0 0 847.616 192z m20.096 582.72a21.632 21.632 0 0 1-20.096 20.096H144.384a21.632 21.632 0 0 1-20.096-20.096v-502.4c0-9.984 10.048-20.032 20.096-20.032h703.232c10.048 0 20.096 10.048 20.096 20.096v502.336zM732.16 493.376H611.52a32.384 32.384 0 0 0-30.08 30.144c0 15.104 15.04 30.144 30.08 30.144h120.576c15.04 0 30.08-15.04 30.08-30.08 0-15.104-9.984-30.208-30.08-30.208z m0-150.656H636.672a32.384 32.384 0 0 0-30.144 30.08c0 15.104 15.04 30.208 30.08 30.208h95.488c15.04 0 30.08-15.104 30.08-30.144 0-15.104-9.984-30.144-30.08-30.144z m-271.232 200.96c25.088-25.152 40.128-55.296 40.128-95.488 0-70.336-60.224-130.56-130.56-130.56-70.336 0-130.56 60.224-130.56 130.56 0 35.2 15.04 70.336 40.128 95.424-55.232 30.144-90.432 90.432-90.432 155.712 0 15.104 15.104 30.144 30.144 30.144 15.104 0 30.144-15.04 30.144-30.08 0-65.344 55.232-120.576 120.576-120.576 65.28 0 120.576 55.232 120.576 120.512 0 15.104 15.04 30.144 30.08 30.144 15.104 0 30.144-15.04 30.144-30.08 0-65.344-35.136-125.632-90.368-155.776zM300.096 448.128c0-40.192 30.08-70.336 70.336-70.336 40.192 0 70.336 30.144 70.336 70.336s-30.144 70.336-70.4 70.336c-40.128 0-70.272-30.144-70.272-70.4z m432 195.904H636.672a32.384 32.384 0 0 0-30.144 30.08c0 15.104 15.04 30.208 30.08 30.208h95.488c15.04 0 30.08-15.104 30.08-30.144 0-15.104-9.984-30.144-30.08-30.144z" p-id="62624"></path></svg>'})
-                stateDot.value.classList.remove('no-login')
+                settingList.value.unshift({
+                    item: '个人中心', 
+                    title: '个人中心',
+                    icon: '<svg t="1718698768090" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="62623" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M847.616 192H144.384A79.36 79.36 0 0 0 64 272.384v502.336c0 45.184 35.2 80.32 80.384 80.32h703.232a79.36 79.36 0 0 0 80.384-80.32v-502.4A79.36 79.36 0 0 0 847.616 192z m20.096 582.72a21.632 21.632 0 0 1-20.096 20.096H144.384a21.632 21.632 0 0 1-20.096-20.096v-502.4c0-9.984 10.048-20.032 20.096-20.032h703.232c10.048 0 20.096 10.048 20.096 20.096v502.336zM732.16 493.376H611.52a32.384 32.384 0 0 0-30.08 30.144c0 15.104 15.04 30.144 30.08 30.144h120.576c15.04 0 30.08-15.04 30.08-30.08 0-15.104-9.984-30.208-30.08-30.208z m0-150.656H636.672a32.384 32.384 0 0 0-30.144 30.08c0 15.104 15.04 30.208 30.08 30.208h95.488c15.04 0 30.08-15.104 30.08-30.144 0-15.104-9.984-30.144-30.08-30.144z m-271.232 200.96c25.088-25.152 40.128-55.296 40.128-95.488 0-70.336-60.224-130.56-130.56-130.56-70.336 0-130.56 60.224-130.56 130.56 0 35.2 15.04 70.336 40.128 95.424-55.232 30.144-90.432 90.432-90.432 155.712 0 15.104 15.104 30.144 30.144 30.144 15.104 0 30.144-15.04 30.144-30.08 0-65.344 55.232-120.576 120.576-120.576 65.28 0 120.576 55.232 120.576 120.512 0 15.104 15.04 30.144 30.08 30.144 15.104 0 30.144-15.04 30.144-30.08 0-65.344-35.136-125.632-90.368-155.776zM300.096 448.128c0-40.192 30.08-70.336 70.336-70.336 40.192 0 70.336 30.144 70.336 70.336s-30.144 70.336-70.4 70.336c-40.128 0-70.272-30.144-70.272-70.4z m432 195.904H636.672a32.384 32.384 0 0 0-30.144 30.08c0 15.104 15.04 30.208 30.08 30.208h95.488c15.04 0 30.08-15.104 30.08-30.144 0-15.104-9.984-30.144-30.08-30.144z" p-id="62624"></path></svg>',
+                    component: UserInfo
+                })
             } else {
-                settingList.value.shift()
-                stateDot.value.classList.add('no-login')
-
+                if (settingList.value.length > listLen) {
+                    settingList.value.shift()
+                }
             }
+        },
+        {
+            immediate: true
         }
     )
     defineOptions({
@@ -167,10 +175,17 @@
                 justify-content: space-between;
 
                 h2 {
+                    align-self: center;
                     height: 10%;
                     font-size: 1.8rem;
                     font-weight: 500;
+                    margin-top: .5rem;
+                    margin-left: .5rem;
                     margin-bottom: .4rem;
+                    max-width: 10.5rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
                 // 设置项
                 &--list {

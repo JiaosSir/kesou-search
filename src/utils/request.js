@@ -1,4 +1,6 @@
 import axios from "axios"
+import { storeToRefs } from "pinia"
+import { useUserStore } from "@/stores/user"
 
 let loading = null                          // 加载动画实例
 // 创建实例时配置默认值
@@ -7,8 +9,6 @@ const Axios = axios.create({
     timeout: 5000,
 })
 
-// 创建实例后修改默认值
-// Axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
 
 // 添加请求拦截器
 Axios.interceptors.request.use(function (config) {
@@ -16,7 +16,7 @@ Axios.interceptors.request.use(function (config) {
     loading = ElLoading.service({           // 开启加载动画
         lock: true,
         text: 'Loading',
-        background: 'rgba(0, 0, 0, 0.7)',
+        background: 'rgba(0, 0, 0, 0.5)',
     })
     return config
 }, function (error) {
@@ -49,5 +49,9 @@ Axios.interceptors.response.use(function (response) {
     })
     return Promise.reject(error)
 })
-
+// 创建实例后修改默认值
+export const setTokenHeader = () => {
+    const { token } = storeToRefs(useUserStore())
+    Axios.defaults.headers.token = token.value
+}
 export default Axios

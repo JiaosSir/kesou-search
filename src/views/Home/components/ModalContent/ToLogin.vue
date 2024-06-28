@@ -28,11 +28,12 @@
                 <section class="register-box">
                     <form name="registerForm" @submit.prevent="toRegister">
                         <p class="remind">用户昵称</p>
-                        <input class="input reg-input" type="text" v-model="nickNameR">
+                        <input class="input reg-input" type="text" v-model="nickNameR" placeholder="长度不超过6位">
                         <p class="remind">手机号</p>
                         <input class="input reg-input" type="text" v-model="phoneR">
                         <p class="remind">密码</p>
-                        <input class="input reg-input" type="password" autocomplete="off" v-model="passwordR">
+                        <input class="input reg-input" type="password" autocomplete="off" v-model="passwordR"
+                            placeholder="长度6~16，使用英文、数字或!@#$%&-+.?">
                         <p class="remind">确认密码</p>
                         <input class="input reg-input" type="password" autocomplete="off" v-model="passwordAgainR">
                         <div class="noticy">
@@ -48,11 +49,14 @@
     </transition>
 </template>
 <script setup>
+import { setTokenHeader } from '@/utils/request'
 import { useModalStore } from '@/stores/modal'
 import { Verify } from '@/hooks/useVerify'
-import { login, register } from '@/api/user'
+import { login, register, getUserInfo } from '@/api/user'
+import { useUserStore } from "@/stores/user"
 
 const { changeModalState } = useModalStore()
+const { setToken, setUserInfo } = useUserStore()
 
 /**
  *  盒子
@@ -161,9 +165,19 @@ const toLogin = () => {
     if (!loginPass.value) return false
     else {
         login(phoneL.value.trim(), passwordL.value.trim()).then(res => {
-            console.log(res)
-            ElMessage.success('登录成功')
-            changeModalState()
+            const data = res.data
+            console.log(data);
+            if (data.code === 1) {
+                ElMessage.success('登录成功')
+                setToken(data.data.token)      // 设置token
+                setTokenHeader()               // 设置请求头
+                getUserInfo().then(res => {    // 发送获取用户数据请求
+                    setUserInfo(res.data.data.userInfo)
+                })
+                changeModalState()
+            } else {
+                ElMessage.error(data.message)
+            }
         }).catch(err => {
             console.log(new Error(err))
         })
@@ -182,10 +196,11 @@ const toRegister = () => {
     rule.exec()
     if (!registerPass.value) return false
     else {
+        console.log(nickNameR.value.trim());
         register(nickNameR.value.trim(), phoneR.value.trim(), passwordAgainR.value.trim()).then(res => {
             console.log(res)
-            ElMessage.success('注册成功')
-            closeRegister()
+            // ElMessage.success('注册成功')
+            // closeRegister()
         }).catch(err => {
             console.log(new Error(err))
         })
@@ -264,6 +279,11 @@ $reg-color: #5268f5;
     border: .2rem solid #8e5aff7c;
     border-radius: .5rem;
     outline: none;
+
+    &::placeholder {
+        color: inherit;
+        opacity: .3;
+    }
 
     &:focus {
         background-color: #8e5aff26;
