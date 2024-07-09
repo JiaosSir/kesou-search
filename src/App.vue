@@ -41,9 +41,8 @@ watch(
     }
 )
 watchEffect(() => {
-    console.log(disableWallpaper.value);
     if (disableWallpaper.value) {    // 开启壁纸禁用
-        wallpaper.value = ''        // 清空壁纸
+        wallpaper.value = ''         // 清空壁纸
     }
 })
 

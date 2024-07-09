@@ -196,11 +196,9 @@ const toRegister = () => {
     rule.exec()
     if (!registerPass.value) return false
     else {
-        console.log(nickNameR.value.trim());
         register(nickNameR.value.trim(), phoneR.value.trim(), passwordAgainR.value.trim()).then(res => {
-            console.log(res)
-            // ElMessage.success('注册成功')
-            // closeRegister()
+            ElMessage.success('注册成功')
+            closeRegister()
         }).catch(err => {
             console.log(new Error(err))
         })
