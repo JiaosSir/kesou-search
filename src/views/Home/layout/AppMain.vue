@@ -28,7 +28,7 @@
         flex-direction: column;
         align-items: center;
         position: relative;
-        z-index: 2;
+        // z-index: 2;
 
         // 搜索框区
         .search-area {
@@ -38,6 +38,7 @@
             z-index: 0;
 
             h1 {
+                width: 24rem;
                 transition: none;
                 position: absolute;
                 bottom: 100%;
@@ -47,6 +48,15 @@
                 font-size: 12rem;
                 animation: enter-topToBottom .5s, 
                            leave-topToBottom .3s .95s ease-in-out forwards;
+            }
+            @media only screen and (max-width: 700px) {
+                h1 {
+                    font-size: 10rem;
+                    width: 20rem;
+                }
+                img {
+                    width: 21rem;
+                }
             }
             img {
                 position: absolute;

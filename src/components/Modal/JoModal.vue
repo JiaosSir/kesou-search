@@ -30,7 +30,6 @@
 <style scoped lang="scss">
     .jo-modal {
         padding: 2rem 3rem;
-        min-width: 40rem;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -60,6 +59,7 @@
             }
         }
         &-main {
+            width: 50vw;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,6 +67,11 @@
             overflow-y: scroll;
             &::-webkit-scrollbar {
                 display: none;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            &-main {
+                width: 30rem;
             }
         }
     }

@@ -189,7 +189,7 @@
 </script>
 <style scoped lang="scss">
 .wallpaper {
-    width: 50vw;
+    width: 100%;
     padding: 0 2rem;
     // 更换壁纸区
     &-change {
@@ -212,6 +212,7 @@
             }
         }
         &-btn {
+            transition: .2s;
             width: 8rem;
             height: 8rem;
             border-radius: 50%;
@@ -222,6 +223,12 @@
             color: #fff;
             background-color: #7559ff;
             cursor: pointer;
+        }
+        @media only screen and (max-width: 600px) {
+            &-btn {
+                width: 6rem;
+                height: 6rem;
+            }
         }
         .disabled {
             filter: saturate(.5) opacity(0.5);

@@ -13,10 +13,15 @@
         <nav>
             <h4>自定义引擎</h4>
             <el-icon size="2rem" @click="isToAdd = !isToAdd"><i-ep-CirclePlusFilled /></el-icon>
+            <el-icon size="2rem" style="margin-left: .5rem;" @click="hasDel = !hasDel"><i-ep-Remove /></el-icon>
         </nav>
         <p v-if="customUrls.length == 0">暂无自定义引擎</p>
         <ul class="url-list theme-modal-block">
             <li class="theme-modal-block-item" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
+                <!-- 删除按钮 -->
+                <transition name="del">
+                    <el-icon v-show="hasDel" class="url-list-remove" size="2rem" @click.stop="delUrl(list.url)"><i-ep-RemoveFilled /></el-icon>
+                </transition>
                 <jo-load-img :src="list.icon"/>
                 <p class="name">{{ list.name }}</p>
                 <p class="url">{{ list.url }}</p>
@@ -36,21 +41,21 @@
      * store 
     */
     const { urls, customUrls } = storeToRefs(useSearchUrlStore())
-    const { changeUrl, checkCurrentEngnie } = useSearchUrlStore()
+    const { delUrl, changeUrl, checkCurrentEngnie } = useSearchUrlStore()
 
 
     const isToAdd = ref(false) // 是否开启添加自定义引擎页面
+    const hasDel = ref(false)  // 是否进行删除引擎
     // 更换搜索引擎
     const changeEngine = urlList => changeUrl(urlList)
-
-
+ 
     defineOptions({
         name: 'SearchEngine'
     })
 </script>
 <style scoped lang="scss">
     .search-engine {
-        width: 50vw;
+        width: 100%;
         padding: 0 2rem;
 
         nav {
@@ -78,6 +83,17 @@
             list-style: none;
             border-radius: 1rem;
             overflow: hidden;
+            transition: .2s;
+
+            &-remove {
+                display: block;
+                margin-right: 1rem;
+                transition: .2s;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
 
             li {
                 cursor: pointer;
@@ -85,7 +101,7 @@
                 display: flex;
                 align-items: center;
                 position: relative;
-                transition: .08s;
+                transition: .2s;
 
                 // 引擎图标
                 img {
@@ -95,10 +111,7 @@
                 p {
                     font-size: 1.6rem;
                     margin-left: 1.2rem;
-                }
-                // 引擎名称
-                .name {
-                    width: 10rem;
+                    text-wrap: nowrap;
                 }
                 // url文字
                 .url {
@@ -119,5 +132,19 @@
             }
         }
     }
-    
+    .del-enter-active {
+        animation: leftToRight .2s;
+    }
+    .del-leave-active {
+        animation: leftToRight .2s reverse;
+    }
+    @keyframes leftToRight {
+        0% {
+            opacity: 0;
+            transform: translateX(-2rem);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
 </style>

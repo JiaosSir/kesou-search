@@ -1,6 +1,6 @@
 <template>
-    <section class="sidebar-right">
-        
+    <section class="jo-nav">
+        <slot></slot>
     </section>
 </template>
 <script setup>
@@ -9,11 +9,14 @@
     })
 </script>
 <style scoped lang="scss">
-    .sidebar-right {
+    .jo-nav {
+        position: relative;
+        padding: .5rem 0;
+        width: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
 </style>

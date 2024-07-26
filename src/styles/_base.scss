@@ -14,9 +14,10 @@ html {
     
 }
 body {
+    min-width: 28rem;
     font-weight: 400;
     line-height: 1.7;
-    padding: $body-padding;
+    padding: $body-padding-tb $body-padding-lr;
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;

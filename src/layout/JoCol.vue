@@ -16,8 +16,6 @@
 </script>
 <style scoped lang="scss">
     .grid-col {
-        float: left;
         width: calc((100% / 12) * v-bind(col));
-        height: 100%;
     }
 </style>

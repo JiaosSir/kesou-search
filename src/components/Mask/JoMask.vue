@@ -19,7 +19,7 @@
         },
         index: {
             type: String,
-            default: '9'
+            default: '10'
         }
     })
     defineOptions({

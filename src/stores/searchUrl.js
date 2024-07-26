@@ -34,10 +34,40 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
     const currentUrl = ref(JSON.parse(JSON.stringify(urls.value[0])))
     // 改变搜索引擎
     const changeUrl = urlList => {
+        console.log(urlList);
         currentUrl.value = urlList
     }
     // 新增搜索引擎
     const addUrl = urlList => customUrls.value.unshift(urlList)
+    // 删除搜索引擎
+    const delUrl = url => {
+        ElMessageBox.confirm(
+        '是否确定删除？',
+        '请确认',
+        {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+        }
+        )
+        .then(() => {
+            ElMessage({
+                type: 'success',
+                message: '删除成功',
+            })
+            customUrls.value = customUrls.value.filter(v => v.url !== url)
+            // 若删除的是当前正在使用的引擎，则把引擎切换至百度
+            if (url === currentUrl.value.url) {
+                changeUrl(
+                    {
+                        url: 'https://www.baidu.com/s?ie=utf-8&word=',
+                        icon: 'https://www.baidu.com/favicon.ico',
+                        name: '百度',
+                    }
+                )
+            }
+        })
+    }
     // 检测是否有重复的域名
     const checkRepeat = url => {
         const hostname = new URL(url).hostname                               // 获取域名
@@ -51,7 +81,7 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
         return url.url === currentUrl.value.url
     }
 
-    return { urls, customUrls, currentUrl, changeUrl, addUrl, checkRepeat, checkCurrentEngnie }
+    return { urls, customUrls, currentUrl, changeUrl, addUrl, delUrl, checkRepeat, checkCurrentEngnie }
 }, {
     persist: {
         paths: ['customUrls', 'currentUrl']

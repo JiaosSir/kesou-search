@@ -14,7 +14,7 @@
 <style scoped lang="scss">
     .grid-row {
         width: 100%; 
-        height: 100%;
-        display: block;
+        display: flex;
+        align-items: center;
     }
 </style>

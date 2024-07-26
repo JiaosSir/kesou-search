@@ -306,6 +306,15 @@
             }
         }
     }
+    @media only screen and (max-width: 600px) {
+        .add-engine {
+            width: 30rem;
+            &-nav__title>.text {
+                width: 30rem;
+                left: 80%;
+            }
+        }
+    }
     .addSeach-enter-active,
     .addSeach-leave-active {
         transition: .1s;
