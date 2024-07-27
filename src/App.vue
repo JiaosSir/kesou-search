@@ -13,19 +13,14 @@ import { useThemeStore } from '@/stores/theme'
 import { useCloseBlockStore } from '@/stores/closeBlock'
 import { useModalStore } from '@/stores/modal'
 import { useSettigsStore } from '@/stores/settings'
-// import { useUserStore } from '@/stores/user'
-// import { getUserInfo } from '@/api/user'
-// import { setTokenHeader } from '@/utils/request'
 /** 
  * store 
 */
 const { theme, wallpaper } = storeToRefs(useThemeStore())
 const { modalState } = storeToRefs(useModalStore())
 const { disableWallpaper } = storeToRefs(useSettigsStore())
-// const { loginState } = storeToRefs(useUserStore())
 const { changeTheme } = useThemeStore()
 const { setCurrentPop } = useCloseBlockStore()
-// const { setUserInfo } = useUserStore()
 
 
 /** 
@@ -53,18 +48,6 @@ watchEffect(() => {
  */
 document.documentElement.onclick = () => setCurrentPop('')
 
-/**
- *  初始化用户信息
- */
-// onBeforeMount(() => {
-//     setTokenHeader()
-//     // 如果已登录，则发送请求获取用户数据
-//     if(loginState.value) {
-//         getUserInfo().then(res => {
-//             setUserInfo(res.data.data.userInfo)
-//         })
-//     }
-// })
 </script>
 <style lang="scss">
 .modal-enter-active,

@@ -1,6 +1,6 @@
 <template>
     <section class="support">
-        <p>我是贫穷的大学生，救救我吧（请理性消费）</p>
+        <p>帮帮孩子吧！服务器真的很贵（请理性消费）</p>
         <img src="/support.jpg" alt="">
     </section> 
 </template>
