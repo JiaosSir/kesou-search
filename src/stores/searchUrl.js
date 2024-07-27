@@ -23,9 +23,9 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
             name: '谷歌',
         },
         {
-            url: 'https://www.sogou.com/web?query=',
-            icon: 'https://www.sogou.com/favicon.ico',
-            name: '搜狗',
+            url: 'https://so.youku.com/search_video/q_',
+            icon: 'https://so.youku.com/favicon.ico',
+            name: '优酷',
         },
     ])
     // 自定义的搜索引擎
@@ -34,38 +34,26 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
     const currentUrl = ref(JSON.parse(JSON.stringify(urls.value[0])))
     // 改变搜索引擎
     const changeUrl = urlList => {
-        console.log(urlList);
         currentUrl.value = urlList
     }
     // 新增搜索引擎
     const addUrl = urlList => customUrls.value.unshift(urlList)
     // 删除搜索引擎
     const delUrl = url => {
-        ElMessageBox.confirm(
-        '是否确定删除？',
-        '请确认',
-        {
-            confirmButtonText: '确认',
-            cancelButtonText: '取消',
-            type: 'warning',
+        customUrls.value = customUrls.value.filter(v => v.url !== url)
+        // 若删除的是当前正在使用的引擎，则把引擎切换至百度
+        if (url === currentUrl.value.url) {
+            changeUrl(
+                {
+                    url: 'https://www.baidu.com/s?ie=utf-8&word=',
+                    icon: 'https://www.baidu.com/favicon.ico',
+                    name: '百度',
+                }
+            )
         }
-        )
-        .then(() => {
-            ElMessage({
-                type: 'success',
-                message: '删除成功',
-            })
-            customUrls.value = customUrls.value.filter(v => v.url !== url)
-            // 若删除的是当前正在使用的引擎，则把引擎切换至百度
-            if (url === currentUrl.value.url) {
-                changeUrl(
-                    {
-                        url: 'https://www.baidu.com/s?ie=utf-8&word=',
-                        icon: 'https://www.baidu.com/favicon.ico',
-                        name: '百度',
-                    }
-                )
-            }
+        ElMessage({
+            type: 'success',
+            message: '删除成功',
         })
     }
     // 检测是否有重复的域名

@@ -34,6 +34,7 @@ declare module 'vue' {
     JoModalSlot: typeof import('./components/Modal/JoModalSlot.vue')['default']
     JoPopup: typeof import('./components/Popup/JoPopup.vue')['default']
     JoSwitch: typeof import('./components/Button/JoSwitch.vue')['default']
+    MessageConfirm: typeof import('./components/Modal/MessageConfirm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

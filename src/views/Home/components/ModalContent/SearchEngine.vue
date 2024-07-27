@@ -20,7 +20,7 @@
             <li class="theme-modal-block-item" v-for="list in customUrls" :key="list.url" @click="changeEngine(list)">
                 <!-- 删除按钮 -->
                 <transition name="del">
-                    <el-icon v-show="hasDel" class="url-list-remove" size="2rem" @click.stop="delUrl(list.url)"><i-ep-RemoveFilled /></el-icon>
+                    <el-icon v-show="hasDel" class="url-list-remove" size="2rem" @click.stop="openConfirmModal(list.url)"><i-ep-RemoveFilled /></el-icon>
                 </transition>
                 <jo-load-img :src="list.icon"/>
                 <p class="name">{{ list.name }}</p>
@@ -30,7 +30,14 @@
             </li>
         </ul>
     </section>
-    <add-engine v-model="isToAdd"></add-engine>
+    <add-engine v-model="isToAdd" />
+    <message-confirm 
+        v-model="isToDel" 
+        title="请确认" 
+        message="是否要删除该搜索引擎？"
+        @confirm="toDel"
+        @cancel="resetDel"
+    />
 </template>
 <script setup>
     import { storeToRefs } from 'pinia'
@@ -45,10 +52,25 @@
 
 
     const isToAdd = ref(false) // 是否开启添加自定义引擎页面
+    const isToDel = ref(false) // 是否开启删除提示框
     const hasDel = ref(false)  // 是否进行删除引擎
+    const urlToDel = ref('')  // 即将删除的url
     // 更换搜索引擎
     const changeEngine = urlList => changeUrl(urlList)
- 
+    // 打开删除确认框
+    const openConfirmModal = url => {
+        urlToDel.value = url
+        isToDel.value = !isToDel.value
+    }
+    // 重置删除值
+    const resetDel = () => urlToDel.value = ''
+    // 删除搜索引擎
+    const toDel = () => {
+        delUrl(urlToDel.value)
+        resetDel()
+        console.log(urlToDel.value);
+    }
+
     defineOptions({
         name: 'SearchEngine'
     })

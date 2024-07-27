@@ -26,7 +26,6 @@ export const useAddSearchUrl = url => {
             
         } else {                                   // history模式
             const str = u.search.match(reg)        // 匹配结果
-            console.log(str);
             if (str) {
                 return {
                     url: u.origin + u.pathname + '?' + str[0].replace(str[1], '').replace(str[2], '').replace('test', ''),
