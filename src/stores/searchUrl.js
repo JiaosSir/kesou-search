@@ -19,7 +19,7 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
         },
         {
             url: 'https://www.google.com/search?q=',
-            icon: '/src/assets/google.png',
+            icon: '/google.png',
             name: '谷歌',
         },
         {

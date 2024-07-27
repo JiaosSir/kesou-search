@@ -72,7 +72,7 @@
         // 变更设置打开状态
         isOpen.value = !isOpen.value
     }
-    // 设置列表
+    // 设置列表wallpaperchange.svg
     const settingList = ref([
         {
             icon: '/wallpaperchange.svg',
@@ -222,9 +222,6 @@
                             align-items: center;
                             margin: 0 1.4rem 0 1rem;
                         }
-                        p {
-                            white-space: nowrap;
-                        }
                     }
                 }
             }
@@ -357,14 +354,14 @@
             
         // }
         100%{
-            transform: translate(-5.3rem, 3rem) scale(1.5);
+            transform: translate(-5.2rem, 3rem) scale(1.5);
         }
     }
     @keyframes closeState {
         100% {
         }
         0%{
-            transform: translate(-5.3rem, 3rem) scale(1.5);
+            transform: translate(-5.2rem, 3rem) scale(1.5);
         }
     }
     @keyframes openStateSmall {

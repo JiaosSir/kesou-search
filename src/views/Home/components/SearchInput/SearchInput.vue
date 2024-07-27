@@ -143,13 +143,8 @@ defineOptions({
 
         @media only screen and (max-width: 600px) {
             input {
-                height: 7rem;
-            }
-        }
-
-        @media only screen and (min-width: 600px) {
-            input {
-                // height: 7.4rem;
+                height: 5rem;
+                font-size: 1.6rem;
             }
         }
 

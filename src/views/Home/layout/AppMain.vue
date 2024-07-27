@@ -5,7 +5,7 @@
             <section class="search-area" key="search">
                 <h1 class="theme-logo">刻搜</h1>
                 <search-input></search-input>
-                <img src="/src/assets/website-icon.png" alt="icon">
+                <img src="/website-icon.png" alt="icon">
             </section>
         </transition>
         <!-- 笔记区 -->

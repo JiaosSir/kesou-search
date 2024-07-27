@@ -79,7 +79,11 @@
     .search-engine {
         width: 100%;
         padding: 0 2rem;
-
+        @media only screen and (max-width: 600px) {
+            & {
+                padding: 0 0 0 1rem;
+            }
+        }
         nav {
             margin-bottom: .5rem;
             display: flex;
@@ -133,7 +137,7 @@
                 p {
                     font-size: 1.6rem;
                     margin-left: 1.2rem;
-                    text-wrap: nowrap;
+                    white-space: nowrap;
                 }
                 // url文字
                 .url {
@@ -142,8 +146,6 @@
                     opacity: .6;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    white-space: nowrap;
-                    flex-shrink: 1;
                 }
                 // 当前选中引擎的图标
                 .check {

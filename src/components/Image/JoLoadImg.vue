@@ -5,7 +5,7 @@
 <script setup>
     const imgTag = ref(null) // img对象
     const noResult = () => { // 修改图片为无
-        imgTag.value.src = '/src/assets/no-result.png'
+        imgTag.value.src = '/no-result.png'
     }
     const props = defineProps(['src', 'alt', 'width'])
     defineOptions({

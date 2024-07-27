@@ -23,14 +23,8 @@
         </jo-row>
 
         <jo-row class="small-screen">
-            <jo-col col="1">
-                <sidebar-left></sidebar-left>
-            </jo-col>
-            <jo-col col="10">
+            <jo-col col="12">
                 <app-main></app-main>
-            </jo-col>
-            <jo-col col="1">
-                <sidebar-right></sidebar-right>
             </jo-col>
         </jo-row>
     </section>
