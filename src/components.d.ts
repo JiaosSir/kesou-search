@@ -7,7 +7,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']

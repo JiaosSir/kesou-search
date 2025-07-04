@@ -3,7 +3,7 @@
         <!-- 用户设置 -->
         <div ref="settings" class="user-settings--btn theme-user-settings-hide">
             <!-- 图标 -->
-            <el-icon v-show="!isOpen" size="2rem" class="settings-icon" @click="showSettings"><i-ep-Tools /></el-icon>
+            <el-icon v-show="!isOpen" size="2rem" class="settings-icon" @click.stop="showSettings"><i-ep-Tools /></el-icon>
             <!-- 设置内容 -->
             <section v-show="isOpen" class="settings__content">
                 <ul class="settings__content--list">
@@ -14,7 +14,7 @@
                 </ul>
             </section>
         </div>
-        <div :class="`login-state theme-user-settings-login-state`" ref="stateDot" @click="showSettings">
+        <div :class="`login-state theme-user-settings-login-state`" ref="stateDot" @click.stop="showSettings">
             <el-icon v-show="isOpen"><i-ep-Close /></el-icon>
         </div>
     </section>
@@ -94,6 +94,11 @@
     }
     defineOptions({
         name: 'UserSettings'
+    })
+    window.addEventListener('click', () => {
+      if (isOpen.value) {
+        showSettings()
+      }
     })
 </script>
 <style scoped lang="scss">
