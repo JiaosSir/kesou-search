@@ -5,7 +5,6 @@
     </section> 
 </template>
 <script setup>
-
     defineOptions({
         name: 'SupportUs'
     })

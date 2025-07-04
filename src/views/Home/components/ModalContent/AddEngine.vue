@@ -35,7 +35,7 @@
                     <section class="add-engine-main--message">
                         <h4 class="content-title">引擎信息</h4>
                         <input type="text" placeholder="为您的引擎起个名字吧(最长6个字符)" v-model="engineName">
-                        <input type="text" placeholder="请填入正确的网址" v-model="engineUrl" @input="spliceUrl">
+                        <input type="text" placeholder="搜索“test”后填入目的地网址" v-model="engineUrl" @input="spliceUrl">
                     </section>
                 </section>
                 <jo-btn value="确认" class="confirm-btn" @click="confirmAdd"/>

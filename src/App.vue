@@ -12,12 +12,14 @@ import { storeToRefs } from 'pinia'
 import { useThemeStore } from '@/stores/theme'
 import { useCloseBlockStore } from '@/stores/closeBlock'
 import { useModalStore } from '@/stores/modal'
+import { useSearchUrlStore } from '@/stores/searchUrl'
 import { useSettigsStore } from '@/stores/settings'
 /** 
  * store 
 */
 const { theme, wallpaper } = storeToRefs(useThemeStore())
 const { modalState } = storeToRefs(useModalStore())
+const { urls, currentUrl } = storeToRefs(useSearchUrlStore())
 const { disableWallpaper } = storeToRefs(useSettigsStore())
 const { changeTheme } = useThemeStore()
 const { setCurrentPop } = useCloseBlockStore()
@@ -28,6 +30,24 @@ const { setCurrentPop } = useCloseBlockStore()
 */
 changeTheme(theme.value)
 // 监听 useThemeStore 的state
+watch(
+    theme,
+    themeV => {
+        // 明暗主题下更换Github图标
+        urls.value.forEach(v => {
+          if(v.name.includes('Github')) {
+            v.icon = themeV === 'light' ? '/github-mark.png' : '/github-mark-white.png'
+          }
+        })
+        // 初始化加载
+        if (currentUrl.value.name.includes('Github')) {
+          currentUrl.value.icon = themeV === 'light' ? '/github-mark.png' : '/github-mark-white.png'
+        }
+    },
+    {
+        immediate: true
+    }
+)
 watch(
     wallpaper,
     newValue => {

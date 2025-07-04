@@ -25,6 +25,7 @@
     import SearchEngine from '@/views/Home/components/ModalContent/SearchEngine.vue'
     import SupportUs from '@/views/Home/components/ModalContent/SupportUs.vue'
     import Wallpaper from '@/views/Home/components/ModalContent/Wallpaper.vue'
+    import Settings from '@/views/Home/components/ModalContent/Settings.vue'
 
     /** 
      * store 
@@ -71,6 +72,12 @@
             item: '搜索引擎',
             title: '搜索引擎',
             component: markRaw(SearchEngine)
+        },
+        {
+            icon: '/settings.svg',
+            item: '通用设置',
+            title: '通用设置',
+            component: markRaw(Settings)
         },
         {
             icon: '/help.svg',

@@ -6,8 +6,9 @@ import { defineStore } from 'pinia'
  */
 export const useSettigsStore = defineStore('settings', () => {
     const disableWallpaper = ref(false)   // 禁用壁纸
+    const enableEnterAnimate = ref(true)  // 入场动画
 
-    return { disableWallpaper }
+    return { disableWallpaper, enableEnterAnimate }
 }, {
     persist: true
 })

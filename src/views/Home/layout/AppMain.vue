@@ -3,9 +3,9 @@
         <!-- 搜索框区 -->
         <transition name="search">
             <section class="search-area" key="search">
-                <h1 class="theme-logo">刻搜</h1>
+                <h1 class="theme-logo" :class="{ 'enter-ani--title': enableEnterAnimate }" v-if="enableEnterAnimate">刻搜，即刻搜索</h1>
                 <search-input></search-input>
-                <img src="/website-icon.png" alt="icon">
+                <img src="/website-icon.png" alt="icon" :class="{ 'enter-ani--logo': enableEnterAnimate }" v-if="enableEnterAnimate">
             </section>
         </transition>
         <!-- 笔记区 -->
@@ -15,7 +15,11 @@
     </main>
 </template>
 <script setup>
+    import { useSettigsStore } from '@/stores/settings'
     import SearchInput from '@/views/Home/components/SearchInput/SearchInput.vue'
+    import { storeToRefs } from 'pinia'
+
+    const { enableEnterAnimate } = storeToRefs(useSettigsStore())
 
     defineOptions({
         name: 'AppMain'
@@ -38,7 +42,7 @@
             z-index: 0;
 
             h1 {
-                width: 24rem;
+                width: max-content;
                 transition: none;
                 position: absolute;
                 bottom: 100%;
@@ -46,17 +50,6 @@
                 z-index: -1;
                 transform: translate(-50%, 4.5rem);
                 font-size: 12rem;
-                animation: enter-topToBottom .5s, 
-                           leave-topToBottom .3s .95s ease-in-out forwards;
-            }
-            @media only screen and (max-width: 700px) {
-                h1 {
-                    font-size: 10rem;
-                    width: 20rem;
-                }
-                img {
-                    width: 21rem;
-                }
             }
             img {
                 position: absolute;
@@ -66,8 +59,26 @@
                 transform: translate(-50%, -3.5rem);
                 width: 25rem;
                 filter: contrast(.7) saturate(.8) brightness(.8) hue-rotate(3deg);
-                animation: enter-bottomToTop .5s, 
+            }
+			.enter-ani {
+				&--title {
+					animation: enter-topToBottom .5s, 
+                           leave-topToBottom .3s .95s ease-in-out forwards;
+				}
+				&--logo {
+					animation: enter-bottomToTop .5s, 
                            leave-bottomToTop .3s .9s ease-in-out forwards;
+				}
+			}
+            @media only screen and (max-width: 700px) {
+                h1 {
+                    font-size: calc(2rem + 4vw);
+                    bottom: 200%;
+                }
+                img {
+                    width: calc(2rem + 20vw);
+                    top: 200%;
+                }
             }
         }
         // 笔记区

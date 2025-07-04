@@ -8,11 +8,6 @@ import { defineStore } from 'pinia'
 export const useSearchUrlStore = defineStore('searchUrl', () => {
     const urls = ref([
         {
-            url: 'https://www.baidu.com/s?ie=utf-8&word=',
-            icon: 'https://www.baidu.com/favicon.ico',
-            name: '百度',
-        },
-        {
             url: 'https://www.bing.com/search?q=',
             icon: 'https://www.bing.com/favicon.ico',
             name: '必应',
@@ -21,6 +16,16 @@ export const useSearchUrlStore = defineStore('searchUrl', () => {
             url: 'https://www.google.com/search?q=',
             icon: '/google.png',
             name: '谷歌',
+        },
+        {
+            url: 'https://www.baidu.com/s?ie=utf-8&word=',
+            icon: 'https://www.baidu.com/favicon.ico',
+            name: '百度',
+        },
+        {
+            url: 'https://github.com/search?type=repositories&q=',
+            icon: '/github-mark.png',
+            name: 'Github',
         },
         {
             url: 'https://so.youku.com/search_video/q_',

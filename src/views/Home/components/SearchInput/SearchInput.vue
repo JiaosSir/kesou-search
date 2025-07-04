@@ -17,7 +17,7 @@
                 </transition>
             </div>
             <!-- 输入框 -->
-            <input ref="inputArea" type="text" placeholder="刻搜，下一刻......" v-model="keyword" @keydown.enter="toSearch"
+            <input ref="inputArea" type="text" placeholder="刻搜，极速体验" v-model="keyword" @keydown.enter="toSearch"
                 @focus="addClass" @blur="removeClass">
             <!-- 右侧搜索图标 -->
             <div class="search-input--icon" @click="toSearch">
